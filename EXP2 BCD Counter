@@ -1,0 +1,22 @@
+#include "reg51.h"
+void msdelay (unsigned int); void main()
+{
+	unsigned char z,i;
+	while(1)
+  {
+		for(z=1;z<=9;z++)
+    {
+      for(i=1;i<=9;i++)
+      {
+        P2=z<<4 | i; 
+				msdelay(1250);
+      }
+    }
+  }
+}
+void msdelay (unsigned int time)
+{
+  unsigned int i,j; 
+  for(i=0;i<time;i++)
+  	for(j=0;j<1275;j++);
+}
