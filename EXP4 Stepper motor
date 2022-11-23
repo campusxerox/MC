@@ -1,0 +1,24 @@
+#include "reg51.h"
+void timerdelay()
+{
+	TMOD = 0X01;
+	TL0 = 0X00;
+	TH0 = 0X0DC;
+	TR0 = 0X01;
+	while(TF0 == 0){};
+	TR0 = 0X00;
+	TF0 = 0X00;
+}
+void main()
+{
+	unsigned int step[4] = {0x03, 0x06, 0x09, 0x0C};
+	unsigned int i;
+	while(1)
+	{
+		for(i=0; i<4; i++)
+		{
+			P0 = step[i];
+			timerdelay();
+		}
+	}
+}
